@@ -1,4 +1,5 @@
 #include <MacRocketry_LED_Diagnostics.h>
+#include "Arduino.h"
 
 MacRocketry_LED_Diagnostics::MacRocketry_LED_Diagnostics(){   //constructor
   Serial.begin(9600); //not sure if this should go here
