@@ -38,7 +38,7 @@ bool MacRocketry_LED_Diagnostics::CHECK_ALT(float BMP_alt, float GPS_alt){
 
 void MacRocketry_LED_Diagnostics::displayLED(int msg){
   switch (msg){
-    case 110//red -> BMP and GPS errors
+    case 110: //red -> BMP and GPS errors
       analogWrite(redPin, 255);
       analogWrite(bluePin, 0);
       analogWrite(greenPin, 0);
@@ -53,7 +53,7 @@ void MacRocketry_LED_Diagnostics::displayLED(int msg){
       analogWrite(bluePin, 0);
       analogWrite(greenPin, 255);
       break;
-    case 100//purple -> GPS error
+    case 100: //purple -> GPS error
       analogWrite(redPin, 255);
       analogWrite(bluePin, 255);
       analogWrite(greenPin, 0);
