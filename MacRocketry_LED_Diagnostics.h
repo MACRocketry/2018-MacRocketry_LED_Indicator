@@ -8,13 +8,13 @@
 class MacRocketry_LED_Diagnostics {
   public:
     MacRocketry_LED_Diagnostics(void);  //constructor
-    void StatusCheck(boolean BMP_test, int fix, boolean SD_check);
-    //boolean CHECK_ALT(float BMP_alt, float GPS_alt); 
+    void StatusCheck(bool BMP_test, int fix, bool SD_check);
+    //bool CHECK_ALT(float BMP_alt, float GPS_alt); 
   
   private:
     int err;
 
-    boolean CHECK_ALT(float BMP_alt, float GPS_alt);
+    bool CHECK_ALT(float BMP_alt, float GPS_alt);
     void displayLED(int msg);
 };
 
