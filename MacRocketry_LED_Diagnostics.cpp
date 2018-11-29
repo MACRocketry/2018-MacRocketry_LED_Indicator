@@ -15,7 +15,7 @@ hundreds - BMP    tens - GPS    ones - SD
 
 */
 
-void MacRocketry_LED_Diagnostics::StatusCheck(boolean BMP_test, int fix, boolean SD_test){   // will take more arguments here for BMP and SD
+void MacRocketry_LED_Diagnostics::StatusCheck(bool BMP_test, int fix, bool SD_test){   // will take more arguments here for BMP and SD
   err = 0;
   if (BMP_test){
     err += 100;
@@ -31,7 +31,7 @@ void MacRocketry_LED_Diagnostics::StatusCheck(boolean BMP_test, int fix, boolean
   //  return; 
 }
 
-boolean MacRocketry_LED_Diagnostics::CHECK_ALT(float BMP_alt, float GPS_alt){
+bool MacRocketry_LED_Diagnostics::CHECK_ALT(float BMP_alt, float GPS_alt){
   //compare BMP and GPS outputs
   //return true if they don't agree within a certain range
 }
