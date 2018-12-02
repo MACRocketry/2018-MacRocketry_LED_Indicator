@@ -31,9 +31,11 @@ void MacRocketry_LED_Diagnostics::StatusCheck(boolean BMP_test, int fix, boolean
   //  return; 
 }
 
-boolean MacRocketry_LED_Diagnostics::CHECK_ALT(float BMP_alt, float GPS_alt){
-  //compare BMP and GPS outputs
-  //return true if they don't agree within a certain range
+boolean MacRocketry_LED_Diagnostics::CHECK_ALT(float BMP_alt, float GPS_alt){ //checks that alt readings agree within 1m
+  if(BMP_alt-GPS_alt<1 && BMP_alt-GPS_alt>-1){
+    return true;
+  }
+  return false;
 }
 
 void MacRocketry_LED_Diagnostics::displayLED(int msg){
