@@ -15,13 +15,13 @@ hundreds - BMP    tens - GPS    ones - SD
 
 int MacRocketry_LED_Diagnostics::StatusCheck(boolean BMP_test, int fix, boolean SD_test){   // will take more arguments here for BMP and SD
   err = 0;
-  if (BMP_test){
+  if (!BMP_test){
     err += 100;
   }
   if (fix == 0){
     err += 10;
   }
-  if(SD_test){
+  if(!SD_test){
     err += 1;
   }
   displayLED(err); 
