@@ -1,9 +1,9 @@
 #ifndef MacRocketry_LED_Diagnostics_h
 #define MacRocketry_LED_Diagnostics_h
 
-#define redPin 3
-#define bluePin 6
-#define greenPin 5
+#define redPin 5
+#define bluePin 3
+#define greenPin 6
 
 class MacRocketry_LED_Diagnostics {
   public:
