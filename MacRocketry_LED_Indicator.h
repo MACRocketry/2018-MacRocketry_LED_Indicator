@@ -2,8 +2,8 @@
 #define MacRocketry_LED_Indicator_h
 
 #define redPin 5
-#define bluePin 3
 #define greenPin 6
+#define bluePin 3
 
 class MacRocketry_LED_Indicator {
   public:
@@ -12,6 +12,9 @@ class MacRocketry_LED_Indicator {
     //bool CHECK_ALT(float BMP_alt, float GPS_alt); 
   
   private:
+    bool BMP_Status;
+    bool GPS_Status;
+    bool SD_Status;
     int err;
 
     bool CHECK_ALT(float BMP_alt, float GPS_alt);

@@ -1,11 +1,16 @@
 #include <MacRocketry_LED_Indicator.h>
 
-MacRocketry_LED_Diagnostics::MacRocketry_LED_Diagnostics(){   //constructor
-  Serial.begin(115200); //not sure if this should go here
+MacRocketry_LED_Indicator::MacRocketry_LED_Indicator(){   //constructor
+  Serial.begin(115200); //begin serial communication to PC for debugging
   
   pinMode(redPin, OUTPUT);
-  pinMode(bluePin, OUTPUT);
   pinMode(greenPin, OUTPUT);
+  pinMode(bluePin, OUTPUT);
+
+  BMP_Status = false;
+  GPS_Status = false;
+  SD_Status = false;
+
 }
 
 /*  dis how error check work:
@@ -13,7 +18,22 @@ hundreds - BMP    tens - GPS    ones - SD
 0 = good to go    >1 = error
 */
 
-int MacRocketry_LED_Diagnostics::StatusCheck(boolean BMP_test, int fix, boolean SD_test){   // will take more arguments here for BMP and SD
+
+bool MacRocketry_LED_Indicator::Set_BMP_Status(bool status){
+  BMP_Status = status;
+  return BMP_Status;
+}
+
+bool MacRocketry_LED_Indicator::Set_GPS_Status(int fix){
+  GPS_Status = 0 < fix;
+  return GPS_Status;
+}
+
+bool MacRocketry_LED_Indicator::Set_SD_Status(bool status){
+  BMP_Status = status;
+}
+
+int MacRocketry_LED_Indicator::StatusCheck(boolean BMP_test, int fix, boolean SD_test){   // will take more arguments here for BMP and SD
   err = 0;
   if (!BMP_test){
     err += 100;
@@ -28,14 +48,14 @@ int MacRocketry_LED_Diagnostics::StatusCheck(boolean BMP_test, int fix, boolean 
   return err;
 }
 
-boolean MacRocketry_LED_Diagnostics::CHECK_ALT(float BMP_alt, float GPS_alt){ //checks that alt readings agree within 1m
+boolean MacRocketry_LED_Indicator::CHECK_ALT(float BMP_alt, float GPS_alt){ //checks that alt readings agree within 1m
   if(BMP_alt-GPS_alt<1 && BMP_alt-GPS_alt>-1){
     return true;
   }else
     return false;
 }
 
-void MacRocketry_LED_Diagnostics::displayLED(int msg){
+void MacRocketry_LED_Indicator::displayLED(int msg){
   switch (msg){
     case 111: // white --> BMP and GPS and SD errors
       analogWrite(redPin, 255);
