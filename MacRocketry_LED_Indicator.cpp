@@ -1,4 +1,4 @@
-#include <MacRocketry_LED_Diagnostics.h>
+#include <MacRocketry_LED_Indicator.h>
 
 MacRocketry_LED_Diagnostics::MacRocketry_LED_Diagnostics(){   //constructor
   Serial.begin(115200); //not sure if this should go here
