@@ -13,25 +13,112 @@ MacRocketry_LED_Indicator::MacRocketry_LED_Indicator(){   //constructor
 
 }
 
-/*  dis how error check work:
-hundreds - BMP    tens - GPS    ones - SD
-0 = good to go    >1 = error
-*/
 
 
 bool MacRocketry_LED_Indicator::Set_BMP_Status(bool status){
   BMP_Status = status;
+  setDisplayLED();
   return BMP_Status;
 }
 
 bool MacRocketry_LED_Indicator::Set_GPS_Status(int fix){
   GPS_Status = 0 < fix;
+  setDisplayLED();
   return GPS_Status;
 }
 
 bool MacRocketry_LED_Indicator::Set_SD_Status(bool status){
-  BMP_Status = status;
+  SD_Status = status;
+  setDisplayLED();
+  return SD_Status;
 }
+
+
+void MacRocketry_LED_Indicator::nextState(int state){
+  switch (state){
+    case FULL_ERROR:
+    
+  }
+}
+
+
+
+void MacRocketry_LED_Indicator::loopError(){
+  switch (displayError){
+    case 
+  }
+}
+
+void MacRocketry_LED_Indicator::setDisplayLED(){
+  //set full error as red
+  analogWrite(redPin, 255);
+  analogWrite(greenPin, 0);
+  analogWrite(bluePin, 0);
+
+  if (BMP_Status){
+    analogWrite(redPin, 0);
+
+  }
+
+
+
+
+
+  switch (msg){
+    case 111: // white --> BMP and GPS and SD errors
+      analogWrite(redPin, 255);
+      analogWrite(bluePin, 255);
+      analogWrite(greenPin, 255);
+    case 110: //red -> BMP and GPS errors
+      analogWrite(redPin, 255);
+      analogWrite(bluePin, 0);
+      analogWrite(greenPin, 0);
+      break;
+    case 101: //cyan -> BMP + SD error
+      analogWrite(redPin, 0);
+      analogWrite(bluePin, 255);
+      analogWrite(greenPin, 255);
+      break;
+    case 100: //purple -> BMP error
+      analogWrite(redPin, 255);
+      analogWrite(bluePin, 255);
+      analogWrite(greenPin, 0);
+      break;    
+    case 11: //cyan -> GPS + SD error
+      analogWrite(redPin, 0);
+      analogWrite(bluePin, 255);
+      analogWrite(greenPin, 255);
+      break;
+    case 10: //yellow -> GPS error
+      analogWrite(redPin, 255);
+      analogWrite(bluePin, 0);
+      analogWrite(greenPin, 255);
+      break;
+    case 1: //blue -> SD error
+      analogWrite(redPin, 0);
+      analogWrite(bluePin, 255);
+      analogWrite(greenPin, 0);
+      break;
+    case 0: //green -> no errors
+      analogWrite(redPin, 0);
+      analogWrite(bluePin, 0);
+      analogWrite(greenPin, 255);
+      break;
+/*    default: //off -> used if the input message matches none of the above for some reason
+      analogWrite(redPin, 255);
+      analogWrite(bluePin, 255);
+      analogWrite(greenPin, 255);
+      break;*/
+  }
+}
+
+
+//--------------------------------------------------------------------------------------------------------------
+/*  dis how error check work:
+hundreds - BMP    tens - GPS    ones - SD
+0 = good to go    >1 = error
+*/
+
 
 int MacRocketry_LED_Indicator::StatusCheck(boolean BMP_test, int fix, boolean SD_test){   // will take more arguments here for BMP and SD
   err = 0;

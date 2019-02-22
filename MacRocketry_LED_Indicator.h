@@ -5,6 +5,15 @@
 #define greenPin 6
 #define bluePin 3
 
+/*
+#define ERROR_ALL
+#define ERROR_BMP
+#define ERROR_
+*/
+
+
+
+
 class MacRocketry_LED_Indicator {
   public:
     MacRocketry_LED_Indicator(void);  //constructor
@@ -15,6 +24,15 @@ class MacRocketry_LED_Indicator {
     bool BMP_Status;
     bool GPS_Status;
     bool SD_Status;
+
+    
+    enum loopError {
+      Error_BMP;
+      ERROR_GPS;
+      ERROR_SD;
+    };
+    loopError displayError;
+
     int err;
 
     bool CHECK_ALT(float BMP_alt, float GPS_alt);
