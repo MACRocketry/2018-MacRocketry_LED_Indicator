@@ -17,8 +17,8 @@ MacRocketry_LED_Indicator::MacRocketry_LED_Indicator(){   //constructor
 
 }
 
-bool MacRocketry_LED_Indicator::setStatusBMP(bool stats){
-  BMP_Status = stats;
+bool MacRocketry_LED_Indicator::setStatusBMP(bool stat){
+  BMP_Status = stat;
   if (BMP_Status) error |= 0x100; //set bit
   else error &= 0x011; //clear bit
   displayLED();
@@ -33,8 +33,8 @@ bool MacRocketry_LED_Indicator::setStatusGPS(int fix){
   return GPS_Status;
 }
 
-bool MacRocketry_LED_Indicator::setStatusSD(bool stats){
-  SD_Status = stats;
+bool MacRocketry_LED_Indicator::setStatusSD(bool stat){
+  SD_Status = stat;
   if (SD_Status) error |= 0x001; //set bit
   else error &= 0x110; //clear bit
   displayLED();
