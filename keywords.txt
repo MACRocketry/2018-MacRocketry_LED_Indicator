@@ -1,0 +1,5 @@
+MacRocketry_LED_Indicator	KEYWORD1
+setStatusBMP KEYWORD2
+setStatusGPS	KEYWORD2
+setStatusSD	KEYWORD2
+displayLED	KEYWORD2
