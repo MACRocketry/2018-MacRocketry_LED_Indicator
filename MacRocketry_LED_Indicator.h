@@ -5,8 +5,6 @@
 #define greenPin 6
 #define bluePin 5
 
-#define errorLoopInterval 1000
-
 class MacRocketry_LED_Indicator {
   public:
     MacRocketry_LED_Indicator(void); //constructor
