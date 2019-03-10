@@ -2,6 +2,8 @@
 #ifndef MacRocketry_LED_Indicator_h
 #define MacRocketry_LED_Indicator_h
 
+#include <Arduino.h>  //include Arduino library
+
 #define redPin 9
 #define greenPin 6
 #define bluePin 5
@@ -27,6 +29,7 @@ class MacRocketry_LED_Indicator {
 #endif
 //end of header file ====================================================================================================
 //start of source file ====================================================================================================
+#include <Arduino.h>  //include Arduino library
 //#include <MacRocketry_LED_Indicator.h>
 
 MacRocketry_LED_Indicator::MacRocketry_LED_Indicator(){   //constructor
@@ -49,6 +52,7 @@ bool MacRocketry_LED_Indicator::Set_BMP_Status(bool stats){
   BMP_Status = stats;
   if (BMP_Status) error |= 0b100; //set bit
   else error &= 0b011; //clear bit
+  displayLED();
   return BMP_Status;
 }
 
@@ -56,6 +60,7 @@ bool MacRocketry_LED_Indicator::Set_GPS_Status(int fix){
   GPS_Status = 0 < fix;
   if (GPS_Status) error |= 0b010; //set bit
   else error &= 0b101; //clear bit
+  displayLED();
   return GPS_Status;
 }
 
@@ -63,6 +68,7 @@ bool MacRocketry_LED_Indicator::Set_SD_Status(bool stats){
   SD_Status = stats;
   if (SD_Status) error |= 0b001; //set bit
   else error &= 0b110; //clear bit
+  displayLED();
   return SD_Status;
 }
 

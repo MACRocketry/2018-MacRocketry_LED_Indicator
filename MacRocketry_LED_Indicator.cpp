@@ -1,5 +1,5 @@
-#include <Arduino.h>                   //Arduino library
-#include <MacRocketry_LED_Indicator.h> //header file
+#include <Arduino.h>  //include Arduino library
+#include <MacRocketry_LED_Indicator.h>
 
 MacRocketry_LED_Indicator::MacRocketry_LED_Indicator(){   //constructor
   Serial.begin(115200); //begin serial communication to PC for debugging
@@ -17,15 +17,15 @@ MacRocketry_LED_Indicator::MacRocketry_LED_Indicator(){   //constructor
 
 }
 
-bool MacRocketry_LED_Indicator::setStatusBMP(bool stat){
-  BMP_Status = stat;
+bool MacRocketry_LED_Indicator::Set_BMP_Status(bool stats){
+  BMP_Status = stats;
   if (BMP_Status) error |= 0b100; //set bit
   else error &= 0b011; //clear bit
   displayLED();
   return BMP_Status;
 }
 
-bool MacRocketry_LED_Indicator::setStatusGPS(int fix){
+bool MacRocketry_LED_Indicator::Set_GPS_Status(int fix){
   GPS_Status = 0 < fix;
   if (GPS_Status) error |= 0b010; //set bit
   else error &= 0b101; //clear bit
@@ -33,8 +33,8 @@ bool MacRocketry_LED_Indicator::setStatusGPS(int fix){
   return GPS_Status;
 }
 
-bool MacRocketry_LED_Indicator::setStatusSD(bool stat){
-  SD_Status = stat;
+bool MacRocketry_LED_Indicator::Set_SD_Status(bool stats){
+  SD_Status = stats;
   if (SD_Status) error |= 0b001; //set bit
   else error &= 0b110; //clear bit
   displayLED();
