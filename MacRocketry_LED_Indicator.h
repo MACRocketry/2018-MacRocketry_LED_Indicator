@@ -11,9 +11,9 @@ class MacRocketry_LED_Indicator {
   public:
     MacRocketry_LED_Indicator(void); //constructor
 
-    bool Set_BMP_Status(bool stats); //check BMP error
-    bool Set_GPS_Status(int fix); //check GPS error
-    bool Set_SD_Status(bool stats); //check SD error
+    bool setStatusBMP(bool stats);  //check BMP error
+    bool setStatusGPS(int fix);     //check GPS error
+    bool setStatusSD(bool stats);   //check SD error
 
     void displayLED(void);
     

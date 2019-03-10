@@ -12,9 +12,9 @@ class MacRocketry_LED_Indicator {
   public:
     MacRocketry_LED_Indicator(void); //constructor
 
-    bool Set_BMP_Status(bool stats); //check BMP error
-    bool Set_GPS_Status(int fix); //check GPS error
-    bool Set_SD_Status(bool stats); //check SD error
+    bool setStatusBMP(bool stats);  //check BMP error
+    bool setStatusGPS(int fix);     //check GPS error
+    bool setStatusSD(bool stats);   //check SD error
 
     void displayLED(void);
     
@@ -43,12 +43,12 @@ MacRocketry_LED_Indicator::MacRocketry_LED_Indicator(){   //constructor
   GPS_Status = false;
   SD_Status = false;
 
-  error = 0b0; //0b means number is binary
+  error = 0b000; //0b means number is binary
   //bit set means working, bit clear means error
 
 }
 
-bool MacRocketry_LED_Indicator::Set_BMP_Status(bool stats){
+bool MacRocketry_LED_Indicator::setStatusBMP(bool stats){
   BMP_Status = stats;
   if (BMP_Status) error |= 0b100; //set bit
   else error &= 0b011; //clear bit
@@ -56,7 +56,7 @@ bool MacRocketry_LED_Indicator::Set_BMP_Status(bool stats){
   return BMP_Status;
 }
 
-bool MacRocketry_LED_Indicator::Set_GPS_Status(int fix){
+bool MacRocketry_LED_Indicator::setStatusGPS(int fix){
   GPS_Status = 0 < fix;
   if (GPS_Status) error |= 0b010; //set bit
   else error &= 0b101; //clear bit
@@ -64,7 +64,7 @@ bool MacRocketry_LED_Indicator::Set_GPS_Status(int fix){
   return GPS_Status;
 }
 
-bool MacRocketry_LED_Indicator::Set_SD_Status(bool stats){
+bool MacRocketry_LED_Indicator::setStatusSD(bool stats){
   SD_Status = stats;
   if (SD_Status) error |= 0b001; //set bit
   else error &= 0b110; //clear bit
