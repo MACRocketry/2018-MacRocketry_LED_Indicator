@@ -15,7 +15,8 @@ class MacRocketry_LED_Indicator {
     bool setStatusBMP(bool stats);  //check BMP error
     bool setStatusGPS(int fix);     //check GPS error
     bool setStatusSD(bool stats);   //check SD error
-
+    
+    void setRGB(char r, char g, char b);
     void displayLED(void);
     
   private:
@@ -72,6 +73,11 @@ bool MacRocketry_LED_Indicator::setStatusSD(bool stats){
   return SD_Status;
 }
 
+void MacRocketry_LED_Indicator::setRGB(char r, char g, char b){
+  analogWrite(redPin, r);
+  analogWrite(greenPin, g);
+  analogWrite(bluePin, b);
+}
 
 void MacRocketry_LED_Indicator::displayLED(){
   switch (error){
